@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.LawerMapper" >
+  <resultMap id="BaseResultMap" type="com.baizhi.entity.Lawer" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="workspace" property="workspace" jdbcType="VARCHAR" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="wordprice" property="wordprice" jdbcType="DECIMAL" />
+    <result column="phoneprice" property="phoneprice" jdbcType="DECIMAL" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, address, year, number, workspace, desc, wordprice, phoneprice, photo, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from jw_lawer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from jw_lawer
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.baizhi.entity.Lawer" >
+    insert into jw_lawer (id, name, address, 
+      year, number, workspace, 
+      desc, wordprice, phoneprice, 
+      photo, status)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{year,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{workspace,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=VARCHAR}, #{wordprice,jdbcType=DECIMAL}, #{phoneprice,jdbcType=DECIMAL}, 
+      #{photo,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baizhi.entity.Lawer" >
+    insert into jw_lawer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="workspace != null" >
+        workspace,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+      <if test="wordprice != null" >
+        wordprice,
+      </if>
+      <if test="phoneprice != null" >
+        phoneprice,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="workspace != null" >
+        #{workspace,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="wordprice != null" >
+        #{wordprice,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneprice != null" >
+        #{phoneprice,jdbcType=DECIMAL},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baizhi.entity.Lawer" >
+    update jw_lawer
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="workspace != null" >
+        workspace = #{workspace,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="wordprice != null" >
+        wordprice = #{wordprice,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneprice != null" >
+        phoneprice = #{phoneprice,jdbcType=DECIMAL},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baizhi.entity.Lawer" >
+    update jw_lawer
+    set name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      workspace = #{workspace,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      wordprice = #{wordprice,jdbcType=DECIMAL},
+      phoneprice = #{phoneprice,jdbcType=DECIMAL},
+      photo = #{photo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

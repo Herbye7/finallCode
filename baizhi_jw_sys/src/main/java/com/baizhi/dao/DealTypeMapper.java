@@ -1,0 +1,17 @@
+package com.baizhi.dao;
+
+import com.baizhi.entity.DealType;
+
+public interface DealTypeMapper {
+    int deleteByPrimaryKey(String id);
+
+    int insert(DealType record);
+
+    int insertSelective(DealType record);
+
+    DealType selectByPrimaryKey(String id);
+
+    int updateByPrimaryKeySelective(DealType record);
+
+    int updateByPrimaryKey(DealType record);
+}

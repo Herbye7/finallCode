@@ -2,17 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.dao.LawerTypeMapper" >
   <resultMap id="BaseResultMap" type="com.baizhi.entity.LawerType" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+    <id column="tid" property="id" jdbcType="VARCHAR" />
+    <result column="tname" property="name" jdbcType="VARCHAR" />
+    <collection property="lawers" javaType="list" ofType="com.baizhi.entity.Lawer">
+      <id column="lid" property="id" jdbcType="VARCHAR" />
+      <result column="lname" property="name" jdbcType="VARCHAR" />
+    </collection>
   </resultMap>
   <sql id="Base_Column_List" >
     id, name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from jw_lawertype
-    where id = #{id,jdbcType=VARCHAR}
+    select l.id lid,l.name lname,t.id tid,t.name tname from
+      jw_lawertype t LEFT JOIN  jw_type_lawer lt
+      on lt.lawertypeid = t.id left join jw_lawer l ON lt.lawerid = l.id
+    where t.id = #{id}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from jw_lawertype
@@ -55,4 +59,11 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+<select id="selectAll" resultType="com.baizhi.entity.LawerType">
+    select id,name from jw_lawertype
+</select>
+
+
+
 </mapper>

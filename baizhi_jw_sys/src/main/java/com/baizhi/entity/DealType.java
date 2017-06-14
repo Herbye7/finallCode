@@ -1,6 +1,8 @@
 package com.baizhi.entity;
 
-public class DealType {
+import java.io.Serializable;
+
+public class DealType implements Serializable {
     private String id;
 
     private String name;

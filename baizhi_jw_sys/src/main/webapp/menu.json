@@ -1,0 +1,113 @@
+[
+  {
+    "id": "1",
+    "name": "系统模块",
+    "iconCls": "icon-bullet_wrench",
+    "href": "",
+    "children": [
+      {
+        "id": "6",
+        "name": "数据备份",
+        "iconCls": "icon-database_yellow",
+        "href": "index.jsp"
+      },
+      {
+        "id": "7",
+        "name": "系统背景",
+        "iconCls": "icon-medal_bronze_2",
+        "href": "index.jsp"
+      },
+      {
+        "id": "21",
+        "name": "清除缓存",
+        "iconCls": "icon-text_list_numbers",
+        "href": "index.jsp"
+      },
+      {
+        "id":"9",
+        "name":"系统日志",
+        "iconCls":"icon-text_list_numbers",
+        "href":" "
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "律师模块",
+    "iconCls": "icon-bullet_wrench",
+    "href": "",
+    "children":[
+      {
+        "id": "10",
+        "name": "律师管理",
+        "iconCls": "icon-medal_bronze_2",
+        "href": "/back/lawer/showAll.jsp"
+      },
+      {
+        "id":"11",
+        "name":"分类管理",
+        "iconCls": "icon-medal_bronze_2",
+        "href":"/back/lawer/showAllType.jsp"
+      }
+    ]
+  },
+  {
+    "id":"3",
+    "name":"用户模块",
+    "iconCls": "icon-medal_bronze_2",
+    "href":"",
+    "children":[
+      {
+        "id":"12",
+        "name":"用户管理",
+        "iconCls": "icon-medal_bronze_2",
+        "href":""
+      }
+    ]
+  },
+  {
+    "id":"4",
+    "name":"订单模块",
+    "iconCls": "icon-medal_bronze_2",
+    "href":"",
+    "children":[
+      {
+        "id":"13",
+        "name":"订单管理",
+        "iconCls": "icon-medal_bronze_2",
+        "href":""
+      }
+    ]
+  },
+  {
+    "id":"5",
+    "name":"案例模块",
+    "iconCls": "icon-medal_bronze_2",
+    "href":"",
+    "children":[
+      {
+        "id":"14",
+        "name":"案例分类管理",
+        "iconCls": "icon-medal_bronze_2",
+        "href":"/back/deal/showAllType.jsp"
+      },
+      {
+        "id":"15",
+        "name":"案例管理",
+        "iconCls": "icon-medal_bronze_2",
+        "href":"/back/deal/showAll.jsp"
+      }
+    ]
+  }
+]
+
+
+
+
+
+
+
+
+
+
+

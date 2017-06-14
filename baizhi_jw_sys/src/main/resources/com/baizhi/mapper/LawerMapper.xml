@@ -8,20 +8,45 @@
     <result column="year" property="year" jdbcType="VARCHAR" />
     <result column="number" property="number" jdbcType="VARCHAR" />
     <result column="workspace" property="workspace" jdbcType="VARCHAR" />
-    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="wordprice" property="wordprice" jdbcType="DECIMAL" />
     <result column="phoneprice" property="phoneprice" jdbcType="DECIMAL" />
     <result column="photo" property="photo" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, address, year, number, workspace, desc, wordprice, phoneprice, photo, status
+    id, name, address, year, number, workspace, description, wordprice, phoneprice, photo, status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from jw_lawer
-    where id = #{id,jdbcType=VARCHAR}
+  select
+  <include refid="Base_Column_List" />
+  from jw_lawer
+  where id = #{id,jdbcType=VARCHAR}
+</select>
+
+
+<resultMap id="all" type="com.baizhi.entity.Lawer">
+  <id column="lid" property="id" jdbcType="VARCHAR" />
+  <result column="lname" property="name" jdbcType="VARCHAR" />
+  <result column="address" property="address" jdbcType="VARCHAR" />
+  <result column="year" property="year" jdbcType="VARCHAR" />
+  <result column="number" property="number" jdbcType="VARCHAR" />
+  <result column="workspace" property="workspace" jdbcType="VARCHAR" />
+  <result column="description" property="description" jdbcType="VARCHAR" />
+  <result column="wordprice" property="wordprice" jdbcType="DECIMAL" />
+  <result column="phoneprice" property="phoneprice" jdbcType="DECIMAL" />
+  <result column="photo" property="photo" jdbcType="VARCHAR" />
+  <result column="status" property="status" jdbcType="VARCHAR" />
+  <collection property="types" javaType="list" ofType="com.baizhi.entity.LawerType">
+    <result column="ltname" property="name"/>
+  </collection>
+</resultMap>
+  <!--查所有律师，包括律师擅长领域信息-->
+  <select id="selectAll" resultMap="all">
+    select
+      l.id lid, l.name lname, lt.name ltname,address, year, number, workspace, description, wordprice, phoneprice, photo, status
+    from jw_lawer l left join jw_type_lawer jtl on l.id = jtl.lawerid
+    left join jw_lawertype lt on jtl.lawertypeid = lt.id
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from jw_lawer
@@ -30,11 +55,11 @@
   <insert id="insert" parameterType="com.baizhi.entity.Lawer" >
     insert into jw_lawer (id, name, address, 
       year, number, workspace, 
-      desc, wordprice, phoneprice, 
+      description, wordprice, phoneprice, 
       photo, status)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{year,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{workspace,jdbcType=VARCHAR}, 
-      #{desc,jdbcType=VARCHAR}, #{wordprice,jdbcType=DECIMAL}, #{phoneprice,jdbcType=DECIMAL}, 
+      #{description,jdbcType=VARCHAR}, #{wordprice,jdbcType=DECIMAL}, #{phoneprice,jdbcType=DECIMAL}, 
       #{photo,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.baizhi.entity.Lawer" >
@@ -58,8 +83,8 @@
       <if test="workspace != null" >
         workspace,
       </if>
-      <if test="desc != null" >
-        desc,
+      <if test="description != null" >
+        description,
       </if>
       <if test="wordprice != null" >
         wordprice,
@@ -93,8 +118,8 @@
       <if test="workspace != null" >
         #{workspace,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null" >
-        #{desc,jdbcType=VARCHAR},
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="wordprice != null" >
         #{wordprice,jdbcType=DECIMAL},
@@ -128,8 +153,8 @@
       <if test="workspace != null" >
         workspace = #{workspace,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null" >
-        desc = #{desc,jdbcType=VARCHAR},
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="wordprice != null" >
         wordprice = #{wordprice,jdbcType=DECIMAL},
@@ -153,7 +178,7 @@
       year = #{year,jdbcType=VARCHAR},
       number = #{number,jdbcType=VARCHAR},
       workspace = #{workspace,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       wordprice = #{wordprice,jdbcType=DECIMAL},
       phoneprice = #{phoneprice,jdbcType=DECIMAL},
       photo = #{photo,jdbcType=VARCHAR},
